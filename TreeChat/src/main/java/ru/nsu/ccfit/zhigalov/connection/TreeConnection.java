@@ -51,7 +51,6 @@ public class TreeConnection implements Runnable {
     }
 
     protected synchronized void removeTimedOutNodes() {
-        log.info("Removing timed out nodes");
         var iter = remoteNodes.entrySet().iterator();
         while (iter.hasNext()) {
             var node = iter.next();
@@ -59,8 +58,6 @@ public class TreeConnection implements Runnable {
                 log.info("Connection timed out " + node.getKey().toString());
                 iter.remove();
                 nodeDisconnection(node.getKey(), node.getValue());
-            } else {
-                log.info("not timed out " + node.getKey());
             }
         }
     }
